@@ -11,6 +11,18 @@ export type PokemonListResponse = {
 };
 
 export type PokemonListProps = {
-  pokemon: PokemonListItem[];
+  pokemon: PokemonCardItem[];
   loading: boolean;
+};
+
+export type PokemonCardItem = {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string | null;
+  };
+};
+
+export type PokemonCardProp = {
+  pokemon: PokemonCardItem;
 };

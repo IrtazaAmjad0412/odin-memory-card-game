@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { fetchAllPokemon } from "./data/api.ts";
+import { loadAllPokemonDetails } from "./data/api.ts";
 import { PokemonList } from "./components/PokemonList/PokemonList.tsx";
-import type { PokemonListItem } from "./types/pokemon.ts";
+import type { PokemonCardItem } from "./types/pokemon.ts";
 import "./App.css";
 
 function App() {
-  const [pokemon, setPokemon] = useState<PokemonListItem[]>([]);
+  const [pokemon, setPokemon] = useState<PokemonCardItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchAllPokemon()
-      .then((data) => setPokemon(data.results))
-      .catch((error) => console.error("Error fetching Pokemon:", error))
+    loadAllPokemonDetails()
+      .then((data) => setPokemon(data))
+      .catch((err) => console.error("Error fetching Pokemon:", err))
       .finally(() => setLoading(false));
   }, []);
 
