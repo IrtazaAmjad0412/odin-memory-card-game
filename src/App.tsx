@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { loadAllPokemonDetails } from "./data/api.ts";
+import { AppHeader } from "./components/AppHeader/AppHeader.tsx";
 import { PokemonList } from "./components/PokemonList/PokemonList.tsx";
 import type { PokemonCardItem } from "./types/pokemon.ts";
 import "./App.css";
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <AppHeader />
       <PokemonList pokemon={pokemon} loading={loading} />
     </div>
   );
