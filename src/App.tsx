@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app-container">
       <PokemonList pokemon={pokemon} loading={loading} />
     </div>
   );
