@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAllPokemon } from "./data/api.ts";
+import { PokemonList } from "./components/PokemonList/PokemonList.tsx";
 import type { PokemonListItem } from "./types/pokemon.ts";
 import "./App.css";
 
@@ -15,15 +16,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div>
-        {loading && <p>Loading Pokemon...</p>}
-        {!loading && pokemon.length === 0 && <p>No Pokemon Found</p>}
-        {pokemon.map((pokemon) => (
-          <div key={pokemon.name}>{pokemon.name}</div>
-        ))}
-      </div>
-    </>
+    <div>
+      <PokemonList pokemon={pokemon} loading={loading} />
+    </div>
   );
 }
 
