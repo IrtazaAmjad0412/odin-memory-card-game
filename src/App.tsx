@@ -8,6 +8,8 @@ import "./App.css";
 function App() {
   const [pokemon, setPokemon] = useState<PokemonCardItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   useEffect(() => {
     loadAllPokemonDetails()
@@ -18,7 +20,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <AppHeader />
+      <AppHeader score={score} highScore={highScore} />
       <PokemonList pokemon={pokemon} loading={loading} />
     </div>
   );
