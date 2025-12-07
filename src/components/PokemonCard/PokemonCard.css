@@ -8,11 +8,13 @@
   border-radius: 0.5rem;
   color: white;
   background-color: #101828;
+  transition: 0.2s ease;
   cursor: pointer;
 }
 
 .pokemon-card:hover {
   background-color: #1b2944;
+  transform: translateY(-0.5rem);
 }
 
 .pokemon-card img {
