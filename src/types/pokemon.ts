@@ -13,6 +13,7 @@ export type PokemonListResponse = {
 export type PokemonListProps = {
   pokemon: PokemonCardItem[];
   loading: boolean;
+  handleCardClick: (pokemon: PokemonCardItem) => void;
 };
 
 export type PokemonCardItem = {
@@ -25,4 +26,5 @@ export type PokemonCardItem = {
 
 export type PokemonCardProp = {
   pokemon: PokemonCardItem;
+  handleCardClick: () => void;
 };
