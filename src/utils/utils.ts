@@ -8,3 +8,9 @@ export const shuffleArray = (array: PokemonCardItem[]): PokemonCardItem[] => {
   }
   return shuffled;
 };
+
+export const capitalizeName = (array: PokemonCardItem[]): PokemonCardItem[] =>
+  array.map((pokemon) => ({
+    ...pokemon,
+    name: pokemon.name[0].toUpperCase() + pokemon.name.slice(1),
+  }));

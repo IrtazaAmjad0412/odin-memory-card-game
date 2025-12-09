@@ -3,7 +3,7 @@ import { loadAllPokemonDetails } from "./data/api.ts";
 import { AppHeader } from "./components/AppHeader/AppHeader.tsx";
 import { PokemonList } from "./components/PokemonList/PokemonList.tsx";
 import { WinModal } from "./components/WinModal/WinModal.tsx";
-import { shuffleArray } from "./utils/utils.ts";
+import { capitalizeName, shuffleArray } from "./utils/utils.ts";
 import type { PokemonCardItem } from "./types/pokemon.ts";
 import "./App.css";
 
@@ -17,7 +17,10 @@ function App() {
 
   useEffect(() => {
     loadAllPokemonDetails()
-      .then((data) => setPokemon(shuffleArray(data)))
+      .then((data) => {
+        const formattedData = capitalizeName(data);
+        setPokemon(shuffleArray(formattedData));
+      })
       .catch((err) => console.error("Error fetching Pokemon:", err))
       .finally(() => setLoading(false));
   }, []);
