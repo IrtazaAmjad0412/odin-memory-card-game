@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { loadAllPokemonDetails } from "./data/api.ts";
 import { AppHeader } from "./components/AppHeader/AppHeader.tsx";
 import { PokemonList } from "./components/PokemonList/PokemonList.tsx";
+import { WinModal } from "./components/WinModal/WinModal.tsx";
+import { shuffleArray } from "./utils/utils.ts";
 import type { PokemonCardItem } from "./types/pokemon.ts";
 import "./App.css";
-import { shuffleArray } from "./utils/utils.ts";
 
 function App() {
   const [pokemon, setPokemon] = useState<PokemonCardItem[]>([]);
@@ -12,6 +13,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [clickedPokemon, setClickedPokemon] = useState<string[]>([]);
+  const [showWinModal, setShowWinModal] = useState(false);
 
   useEffect(() => {
     loadAllPokemonDetails()
@@ -28,20 +30,36 @@ function App() {
       setScore(0);
       setClickedPokemon([]);
     } else {
-      setScore(score + 1);
+      const newScore = score + 1;
+      if (newScore === pokemon.length) {
+        setHighScore(newScore);
+        setShowWinModal(true);
+      }
+      setScore(newScore);
       setClickedPokemon([...clickedPokemon, clicked.name]);
     }
     setPokemon(shuffleArray(pokemon));
   };
 
+  const restartGame = () => {
+    setScore(0);
+    setClickedPokemon([]);
+    setPokemon(shuffleArray(pokemon));
+    setShowWinModal(false);
+  };
+
   return (
     <div className="app-container">
       <AppHeader score={score} highScore={highScore} />
-      <PokemonList
-        pokemon={pokemon}
-        loading={loading}
-        handleCardClick={handleCardClick}
-      />
+      {showWinModal ? (
+        <WinModal restartGame={restartGame} />
+      ) : (
+        <PokemonList
+          pokemon={pokemon}
+          loading={loading}
+          handleCardClick={handleCardClick}
+        />
+      )}
     </div>
   );
 }

@@ -6,6 +6,5 @@ export const shuffleArray = (array: PokemonCardItem[]): PokemonCardItem[] => {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
-  console.log(shuffled);
   return shuffled;
 };
