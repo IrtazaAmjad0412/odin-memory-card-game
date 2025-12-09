@@ -44,7 +44,7 @@ function App() {
   const restartGame = () => {
     setScore(0);
     setClickedPokemon([]);
-    setPokemon(shuffleArray(pokemon));
+    setPokemon(shuffleArray([...pokemon]));
     setShowWinModal(false);
   };
 
